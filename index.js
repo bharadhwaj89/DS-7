@@ -5,39 +5,55 @@ import './style.css';
 const appDiv = document.getElementById('app');
 appDiv.innerHTML = `<h1>JS Starter</h1>`;
 
-const Mystack = () => {
-  const storage = {};
-  let index =0 ;
+const MyStack = class {
+  constructor(){
+    this.data = {};
+    this.index =0;
+  }
 
-  const push = num => {
-    storage[index] = num;
-    index++;
-  };
+push(item){
+ this.index ++;
+ this.data[this.index]=item;
+}
 
-  const print = () =>{
-  console.log(storage);
-  };
+pop(){
+  const item = this.data[this.index];
+  delete this.data[this.index];
+  this.index--;
+}
+size(){
+  return this.index;
+}
 
-  const pop = () => {
-    delete storage[index-1];
-    index --;
-  };
+peek(){
+  return this.data[this.index];
+}
+print(){
+  console.log(this.data);
+}
+}
 
-  const size = () => index;
-  
-  return {push, print, pop, size};
-};
+const stack = new MyStack();
 
-
-
-const stack = Mystack();
-stack.push(10);
-stack.print();
-stack.push(11);
+stack.push(1);
+stack.push(2);
 stack.print();
 stack.pop();
 stack.print();
-console.log(stack.size());
+const item = stack.peek();
+console.log(item);
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
